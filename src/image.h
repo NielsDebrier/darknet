@@ -17,6 +17,9 @@ void ipl_into_image(IplImage* src, image im);
 void flush_stream_buffer(CvCapture *cap, int n);
 void show_image_cv(image p, const char *name, IplImage *disp);
 #endif
+#ifdef NUMPY
+image ndarray_to_image(unsigned char* src, long* shape, long* strides);
+#endif
 #endif
 
 float get_color(int c, int x, int max);
