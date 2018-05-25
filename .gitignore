@@ -15,7 +15,6 @@ darknet/opencv/
 darknet/convnet/
 darknet/decaf/
 darknet/submission/
-darknet/cfg/
 darknet/darknet
 darknet/.fuse*
 darknet/backup
