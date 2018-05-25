@@ -1,0 +1,13 @@
+<launch>
+    <arg name='source'/>
+    <arg name='config'/>
+    <arg name='weights'/>
+    <arg name='meta'/>    
+
+    <node pkg='ros_yolov3' type='publisher.py' name='yolo_node'>
+        <param name='source' value='$(arg source)'/>
+        <param name='config' value='$(arg config)'/>
+        <param name='weights' value='$(arg weights)'/>
+        <param name='meta' value='$(arg meta)'/>
+    </node>
+</launch>
