@@ -1,0 +1,78 @@
+<launch>
+    <!-- Pepper args -->
+    <arg name="nao_ip"              default="$(optenv NAO_IP 127.0.0.1)" />
+    <arg name="nao_port"            default="$(optenv NAO_PORT 9559)" />
+    <arg name="roscore_ip"          default="127.0.0.1" />
+    <arg name="network_interface"   default="eth0" />
+    <arg name="namespace"           default="pepper_robot" />
+    
+    <!-- yolo args-->
+    <arg name='source'  default='/pepper_robot/naoqi_driver/camera/front/image_raw'/>
+    <arg name='config'  default='cfg/yolov3.cfg'/>
+    <arg name='weights' default='bin/yolov3.weights'/>
+    <arg name='meta'    default='cfg/coco.data'/>
+
+    <!-- other args -->
+    <arg name='device' default='cam'/>
+    <arg name='algorithm' default='yolov3'/>
+
+
+    <!-- cam + publischer -->
+    <group if='$(eval device == "cam")'>
+
+        <include file='$(find ros_yolov3)/bin/$(arg device).launch'/>
+
+        <!-- publisher -->
+        <group if='$(eval algorithm == "yolov3")'>
+            <include file='$(find ros_yolov3)/bin/publisher_node.launch'>
+                <arg name='source'  value='/usb_cam/image_raw'/>
+                <arg name='config'  value='$(arg config)'/>
+                <arg name='weights' value='$(arg weights)'/>
+                <arg name='meta'    value='$(arg meta)'/>
+            </include>
+        </group>
+
+        <group if='$(eval algorithm == "snicker")'>
+            <include file='$(find ros_yolov3)/bin/publisher_node.launch'>
+                <arg name='source'  value='/usb_cam/image_raw'/>
+                <arg name='config'  value='cfg/snicker.cfg'/>
+                <arg name='weights' value='backup/snicker.weights'/>
+                <arg name='meta'    value='data/snicker.data'/>
+            </include>
+        </group>
+        
+    </group>
+
+     <!-- Pepper + publisher -->
+    <group if='$(eval device == "pepper")'>
+       
+        <include file='$(find ros_yolov3)/bin/$(arg device).launch'>
+            <arg name="nao_ip"            value='$(arg nao_ip)' />
+            <arg name="nao_port"          value='$(arg nao_port)' />
+            <arg name="roscore_ip"        value='$(arg roscore_ip)' />
+            <arg name="network_interface" value='$(arg network_interface)' />
+            <arg name="namespace"         value='$(arg namespace)' />
+        </include>
+
+       <!-- publisher -->
+        <group if='$(eval algorithm == "yolov3")'>
+            <include file='$(find ros_yolov3)/bin/publisher_node.launch'>
+                <arg name='source'  value='/pepper_robot/naoqi_driver/camera/front/image_raw'/>
+                <arg name='config'  value='$(arg config)'/>
+                <arg name='weights' value='$(arg weights)'/>
+                <arg name='meta'    value='$(arg meta)'/>
+            </include>
+        </group>
+
+        <group if='$(eval algorithm == "snicker")'>
+            <include file='$(find ros_yolov3)/bin/publisher_node.launch'>
+                <arg name='source'  value='/pepper_robot/naoqi_driver/camera/front/image_raw'/>
+                <arg name='config'  value='cfg/snicker.cfg'/>
+                <arg name='weights' value='backup/snicker.weights'/>
+                <arg name='meta'    value='data/snicker.data'/>
+            </include>
+        </group>
+    </group>
+    
+    <include file='$(find ros_yolov3)/bin/subscriber_node.launch'/>
+</launch>
