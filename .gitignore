@@ -7,7 +7,6 @@ darknet/*.jpg
 darknet/*.pyc
 darknet/old/
 darknet/mnist/
-darknet/data/
 darknet/caffe/
 darknet/grasp/
 darknet/images/

@@ -1,0 +1,5 @@
+classes= 1
+train  = /home/tim/stage/catkin_ws/src/ros_yolov3/darknet/data/snicker_train.txt
+valid  = /home/tim/stage/catkin_ws/src/ros_yolov3/darknet/data/snicker_train.txt
+names = /home/tim/stage/catkin_ws/src/ros_yolov3/darknet/data/snicker.names
+backup = /home/tim/stage/catkin_ws/src/ros_yolov3/darknet/backup/
