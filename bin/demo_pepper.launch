@@ -1,0 +1,8 @@
+<launch>
+    <include file='$(find ros_yolov3)/bin/yolo.launch'>
+        <arg name='device'  value='pepper'/>
+        <arg name='algorithm'  value='snicker'/>
+        <arg name='nao_ip' value='192.168.3.146'/>
+        <arg name='network_interface' value='wlx10feed1816e8'/>
+    </include>
+</launch>

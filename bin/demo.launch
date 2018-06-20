@@ -1,0 +1,5 @@
+<launch>
+    <include file='$(find ros_yolov3)/bin/yolo.launch'>
+        <arg name='algorithm'  value='snicker'/>
+    </include>
+</launch>

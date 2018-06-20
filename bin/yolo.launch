@@ -35,9 +35,9 @@
         <group if='$(eval algorithm == "snicker")'>
             <include file='$(find ros_yolov3)/bin/publisher_node.launch'>
                 <arg name='source'  value='/usb_cam/image_raw'/>
-                <arg name='config'  value='cfg/snicker.cfg'/>
-                <arg name='weights' value='backup/snicker.weights'/>
-                <arg name='meta'    value='data/snicker.data'/>
+                <arg name='config'  value='cfg/snickerv3.cfg'/>
+                <arg name='weights' value='backup/snickerv3.weights'/>
+                <arg name='meta'    value='data/snickerv3.data'/>
             </include>
         </group>
         
@@ -67,9 +67,9 @@
         <group if='$(eval algorithm == "snicker")'>
             <include file='$(find ros_yolov3)/bin/publisher_node.launch'>
                 <arg name='source'  value='/pepper_robot/naoqi_driver/camera/front/image_raw'/>
-                <arg name='config'  value='cfg/snicker.cfg'/>
-                <arg name='weights' value='backup/snicker.weights'/>
-                <arg name='meta'    value='data/snicker.data'/>
+                <arg name='config'  value='cfg/snickerv3.cfg'/>
+                <arg name='weights' value='backup/snickerv3.weights'/>
+                <arg name='meta'    value='data/snickerv3.data'/>
             </include>
         </group>
     </group>
